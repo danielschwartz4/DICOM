@@ -7,18 +7,32 @@ from instance.serializers import InstanceSerializer
 
 
 # Create your views here.
+class FilterInstanceAPIView(ListAPIView):
+    """This endpoint lists all of the available instances from the database"""
+    serializer_class = InstanceSerializer
+
+    def get_queryset(self):
+        if 'q' in self.request.GET:
+            # lookup_url_kwarg = "instance"
+            # patient_name = self.kwargs.get(self.lookup_url_kwarg)
+            # queryset = Instance.objects.filter(patient_name__regex=r'\b(?i)' + patient_name)
+            queryset = Instance.objects.filter(patient_name__regex=r'\b(?i)' + self.request.GET['q'])
+        else:
+            queryset = Instance.objects.all() 
+        return queryset
+
 class ListInstanceAPIView(ListAPIView):
     """This endpoint lists all of the available instances from the database"""
     serializer_class = InstanceSerializer
     lookup_url_kwarg = "instance"
     
-
     def get_queryset(self):
         print(self.kwargs)
         patient_name = self.kwargs.get(self.lookup_url_kwarg)
         print(patient_name)
         queryset = Instance.objects.filter(patient_name__regex=r'\b(?i)' + patient_name)
         return queryset
+
 class CreateInstanceAPIView(CreateAPIView):
     """This endpoint allows for creation of an instance"""
     queryset = Instance.objects.all()
