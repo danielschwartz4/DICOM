@@ -10,6 +10,4 @@ urlpatterns = [
 ]
 
 # TODO
-# 1. Add query (?=x)
-# 2. Make /instances AND /instances?=x work
-# 2. Test update
+# 1. Test update
