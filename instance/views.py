@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django_filters import rest_framework as filters
 from rest_framework.generics import (CreateAPIView, DestroyAPIView,
                                      ListAPIView, UpdateAPIView)
@@ -6,14 +5,11 @@ from rest_framework.generics import (CreateAPIView, DestroyAPIView,
 from instance.models import Instance
 from instance.serializers import InstanceSerializer
 
-# Create your views here.
 class FilterInstanceAPIView(ListAPIView):
-    """This endpoint lists all of the available instances from the database"""
+    """This endpoint lists all of the available instances from the database \n
+        Query tags: q=patient_name, modality=modality, ordered=True"""
     serializer_class = InstanceSerializer
 
-class FilterInstanceAPIView(ListAPIView):
-    """This endpoint lists all of the available instances from the database"""
-    serializer_class = InstanceSerializer
 
     def get_queryset(self):
         req = self.request.GET
