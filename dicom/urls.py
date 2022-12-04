@@ -5,6 +5,6 @@ from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/instance/',include("instance.urls")),
+    path('instances/',include("instance.urls")),
     path('docs/', include_docs_urls(title='DICOM Api')),
 ]

@@ -1,10 +1,10 @@
 from django.shortcuts import render
+from django_filters import rest_framework as filters
 from rest_framework.generics import (CreateAPIView, DestroyAPIView,
                                      ListAPIView, UpdateAPIView)
-from django_filters import rest_framework as filters
+
 from instance.models import Instance
 from instance.serializers import InstanceSerializer
-
 
 # Create your views here.
 class FilterInstanceAPIView(ListAPIView):
