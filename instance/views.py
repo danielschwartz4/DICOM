@@ -20,11 +20,16 @@ class FilterInstanceAPIView(ListAPIView):
         queryset = Instance.objects.all()
         
         if len(req) == 0:
-            return Instance.objects.all()
+            return queryset
+        # query with autocomplete as regex
         if 'q' in req:
             queryset = queryset.filter(patient_name__regex=r'\b(?i)' + req['q'])
+        # filter by modality
         if 'modality' in req:
             queryset = queryset.filter(modality=req['modality'])
+        # order
+        if 'ordered' in req and req['ordered'] == 'True':
+            queryset = queryset.order_by('date')
         return queryset
 
 class CreateInstanceAPIView(CreateAPIView):
