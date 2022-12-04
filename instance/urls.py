@@ -8,6 +8,3 @@ urlpatterns = [
     path("update/<int:pk>/", views.UpdateInstanceAPIView.as_view(),name="update_instance"),
     path("delete/<int:pk>/", views.DeleteInstanceAPIView.as_view(),name="delete_instance")
 ]
-
-# TODO
-# 1. Test update
